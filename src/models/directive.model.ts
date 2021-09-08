@@ -15,6 +15,10 @@ export class Directive extends Entity {
   })
   command: string;
 
+  @property({
+    type: 'string',
+  })
+  modelId?: string;
 
   constructor(data?: Partial<Directive>) {
     super(data);

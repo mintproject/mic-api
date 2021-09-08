@@ -71,6 +71,10 @@ export class Parameter extends Entity {
   })
   max?: number;
 
+  @property({
+    type: 'string',
+  })
+  modelId?: string;
 
   constructor(data?: Partial<Parameter>) {
     super(data);

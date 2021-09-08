@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {Parameter} from './parameter.model';
+import {Directive} from './directive.model';
 
 @model()
 export class Model extends Entity {
@@ -21,6 +23,11 @@ export class Model extends Entity {
   })
   description: string;
 
+  @hasMany(() => Parameter)
+  parameters: Parameter[];
+
+  @hasOne(() => Directive)
+  directive: Directive;
 
   constructor(data?: Partial<Model>) {
     super(data);

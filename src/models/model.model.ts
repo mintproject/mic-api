@@ -1,6 +1,6 @@
-import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
-import {Parameter} from './parameter.model';
+import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {Directive} from './directive.model';
+import {Parameter} from './parameter.model';
 
 @model()
 export class Model extends Entity {
@@ -8,6 +8,7 @@ export class Model extends Entity {
     type: 'string',
     id: true,
     generated: true,
+    defaultFn: 'uuid',
   })
   id?: string;
 

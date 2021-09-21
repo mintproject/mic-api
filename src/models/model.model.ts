@@ -1,6 +1,12 @@
 import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {Directive} from './directive.model';
+import {Input} from './input.model';
 import {Parameter} from './parameter.model';
+
+enum ComponentType {
+  CWL = 'cwl',
+  DOCKER = 'docker',
+}
 
 @model()
 export class Model extends Entity {
@@ -24,11 +30,24 @@ export class Model extends Entity {
   })
   description: string;
 
+
+  @property({
+    type: 'string',
+    required: true,
+    jsonSchema: {
+      enum: Object.values(ComponentType),
+    },
+  })
+  type: string;
+
   @hasMany(() => Parameter)
   parameters: Parameter[];
 
   @hasOne(() => Directive)
   directive: Directive;
+
+  @hasMany(() => Input)
+  inputs: Input[];
 
   constructor(data?: Partial<Model>) {
     super(data);

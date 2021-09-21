@@ -77,6 +77,12 @@ export class Parameter extends Entity {
   })
   modelId?: string;
 
+
+  @property({
+    type: 'string',
+  })
+  prefix?: string;
+
   constructor(data?: Partial<Parameter>) {
     super(data);
   }

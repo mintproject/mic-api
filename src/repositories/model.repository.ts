@@ -1,10 +1,10 @@
-import {inject, Getter} from '@loopback/core';
-import {DefaultCrudRepository, repository, HasManyRepositoryFactory, HasOneRepositoryFactory} from '@loopback/repository';
+import {Getter, inject} from '@loopback/core';
+import {DefaultCrudRepository, HasManyRepositoryFactory, HasOneRepositoryFactory, repository} from '@loopback/repository';
 import {DbDataSource} from '../datasources';
-import {Model, ModelRelations, Parameter, Directive, Input} from '../models';
-import {ParameterRepository} from './parameter.repository';
+import {Directive, Input, Model, ModelRelations, Parameter} from '../models';
 import {DirectiveRepository} from './directive.repository';
 import {InputRepository} from './input.repository';
+import {ParameterRepository} from './parameter.repository';
 
 export class ModelRepository extends DefaultCrudRepository<
   Model,

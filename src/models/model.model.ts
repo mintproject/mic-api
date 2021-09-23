@@ -13,7 +13,6 @@ export class Model extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
     defaultFn: 'uuid',
   })
   id?: string;
@@ -39,6 +38,22 @@ export class Model extends Entity {
     },
   })
   type: string;
+
+  @property({
+    type: 'object',
+    required: false,
+  })
+  cwl_spec: Object;
+
+  @property({
+    type: 'string',
+  })
+  dockerImage: string
+
+  @property({
+    type: 'string',
+  })
+  path?: string;
 
   @hasMany(() => Parameter)
   parameters: Parameter[];

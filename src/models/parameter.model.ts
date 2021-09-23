@@ -5,7 +5,6 @@ export class Parameter extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
     defaultFn: 'uuid',
   })
   id?: string;

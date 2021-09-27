@@ -17,27 +17,28 @@ export class Input extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  display_name: string;
+  display_name?: string;
 
   @property({
     type: 'string',
-    required: true,
   })
-  description: string;
+  description?: string;
 
   @property({
     type: 'string',
-    required: true,
   })
-  path: string;
+  path?: string;
 
   @property({
     type: 'string',
   })
   modelId?: string;
 
+  @property({
+    type: 'string',
+  })
+  prefix?: string;
 
   constructor(data?: Partial<Input>) {
     super(data);

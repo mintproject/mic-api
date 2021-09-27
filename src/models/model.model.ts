@@ -8,7 +8,7 @@ enum ComponentType {
   DOCKER = 'docker',
 }
 
-@model()
+@model({settings: {strict: true}})
 export class Model extends Entity {
   @property({
     type: 'string',
@@ -48,7 +48,7 @@ export class Model extends Entity {
   @property({
     type: 'string',
   })
-  dockerImage: string
+  docker_image: string
 
   @property({
     type: 'string',
@@ -63,6 +63,8 @@ export class Model extends Entity {
 
   @hasMany(() => Input)
   inputs: Input[];
+
+  [prop: string]: any;
 
   constructor(data?: Partial<Model>) {
     super(data);

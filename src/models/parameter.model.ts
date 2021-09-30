@@ -17,15 +17,14 @@ export class Parameter extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  display_name: string;
+  display_name?: string;
 
   @property({
     type: 'string',
-    required: true,
+    description: "The type of parameter",
   })
-  description: string;
+  description?: string;
 
   @property({
     type: 'string',
@@ -45,15 +44,14 @@ export class Parameter extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    description: "Describes whether the data values will be categorical, ordered, or numerical",
   })
-  data_type: string;
+  data_type?: string;
 
   @property({
     type: 'any',
-    required: true,
   })
-  default: any;
+  default?: any;
 
   @property({
     type: 'array',

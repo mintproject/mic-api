@@ -25,9 +25,8 @@ export class Model extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  description: string;
+  description?: string;
 
 
   @property({

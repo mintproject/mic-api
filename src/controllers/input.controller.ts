@@ -4,18 +4,12 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
 import {Input} from '../models';
 import {InputRepository} from '../repositories';
@@ -23,8 +17,8 @@ import {InputRepository} from '../repositories';
 export class InputController {
   constructor(
     @repository(InputRepository)
-    public inputRepository : InputRepository,
-  ) {}
+    public inputRepository: InputRepository,
+  ) { }
 
   @post('/inputs')
   @response(200, {

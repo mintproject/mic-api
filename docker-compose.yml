@@ -2,14 +2,14 @@ version: '3.3'
 
 services:
   postgres:
-    image: postgres
+    image: postgres:13
     restart: always
     environment:
       - POSTGRES_PASSWORD=test
       - POSTGRES_USER=test
       - POSTGRES_DB=mat
     volumes:
-        - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
 volumes:

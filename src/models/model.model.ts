@@ -28,6 +28,10 @@ export class Model extends Entity {
   })
   description?: string;
 
+  @property({
+    type: 'string',
+  })
+  user?: string;
 
   @property({
     type: 'string',

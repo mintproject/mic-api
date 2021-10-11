@@ -5,3 +5,4 @@ export * from './model-input.controller';
 export * from './model.controller';
 export * from './input.controller';
 export * from './parameter.controller';
+export * from './model-container.controller';

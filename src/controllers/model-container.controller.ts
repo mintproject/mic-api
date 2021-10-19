@@ -3,7 +3,7 @@ import {
   CountSchema,
   Filter,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
   del,
@@ -13,13 +13,13 @@ import {
   param,
   patch,
   post,
-  requestBody,
+  requestBody
 } from '@loopback/rest';
 import {
-  Model,
-  Container,
+  Container, Model
 } from '../models';
 import {ModelRepository} from '../repositories';
+import {createContainer} from './docker-utils';
 
 export class ModelContainerController {
   constructor(
@@ -67,6 +67,11 @@ export class ModelContainerController {
       },
     }) container: Omit<Container, 'id'>,
   ): Promise<Container> {
+    const docker_container = await createContainer(container.image)
+    container.host = docker_container.host
+    container.docker_id = docker_container.id
+    container.port = docker_container.port
+    console.log(container)
     return this.modelRepository.containers(id).create(container);
   }
 

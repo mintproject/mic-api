@@ -70,6 +70,9 @@ export class Model extends Entity {
 
   @hasMany(() => Container)
   containers: Container[];
+
+  @hasOne(() => Container)
+  container: Container;
   [prop: string]: any;
 
   constructor(data?: Partial<Model>) {

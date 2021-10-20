@@ -26,26 +26,26 @@ export class ModelContainerController {
     @repository(ModelRepository) protected modelRepository: ModelRepository,
   ) { }
 
-  @get('/models/{id}/container', {
+  @get('/models/{id}/containers', {
     responses: {
       '200': {
-        description: 'Model has one Container',
+        description: 'Array of Model has many Container',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(Container),
+            schema: {type: 'array', items: getModelSchemaRef(Container)},
           },
         },
       },
     },
   })
-  async get(
+  async find(
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Container>,
-  ): Promise<Container> {
-    return this.modelRepository.container(id).get(filter);
+  ): Promise<Container[]> {
+    return this.modelRepository.containers(id).find(filter);
   }
 
-  @post('/models/{id}/container', {
+  @post('/models/{id}/containers', {
     responses: {
       '200': {
         description: 'Model model instance',
@@ -72,10 +72,10 @@ export class ModelContainerController {
     container.docker_id = docker_container.id
     container.port = docker_container.port
     console.log(container)
-    return this.modelRepository.container(id).create(container);
+    return this.modelRepository.containers(id).create(container);
   }
 
-  @patch('/models/{id}/container', {
+  @patch('/models/{id}/containers', {
     responses: {
       '200': {
         description: 'Model.Container PATCH success count',
@@ -95,10 +95,10 @@ export class ModelContainerController {
     container: Partial<Container>,
     @param.query.object('where', getWhereSchemaFor(Container)) where?: Where<Container>,
   ): Promise<Count> {
-    return this.modelRepository.container(id).patch(container, where);
+    return this.modelRepository.containers(id).patch(container, where);
   }
 
-  @del('/models/{id}/container', {
+  @del('/models/{id}/containers', {
     responses: {
       '200': {
         description: 'Model.Container DELETE success count',
@@ -110,6 +110,6 @@ export class ModelContainerController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Container)) where?: Where<Container>,
   ): Promise<Count> {
-    return this.modelRepository.container(id).delete(where);
+    return this.modelRepository.containers(id).delete(where);
   }
 }

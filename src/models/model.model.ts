@@ -73,6 +73,9 @@ export class Model extends Entity {
 
   @hasOne(() => Container)
   container: Container;
+
+  @hasMany(() => Directive)
+  directives: Directive[];
   [prop: string]: any;
 
   constructor(data?: Partial<Model>) {

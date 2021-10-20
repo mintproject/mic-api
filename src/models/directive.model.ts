@@ -20,6 +20,12 @@ export class Directive extends Entity {
   })
   modelId?: string;
 
+  @property({
+    type: 'date',
+    defaultFn: "now",
+  })
+  created_at: Date;
+
   constructor(data?: Partial<Directive>) {
     super(data);
   }

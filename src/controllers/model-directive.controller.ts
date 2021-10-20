@@ -26,26 +26,26 @@ export class ModelDirectiveController {
     @repository(ModelRepository) protected modelRepository: ModelRepository,
   ) { }
 
-  @get('/models/{id}/directive', {
+  @get('/models/{id}/directives', {
     responses: {
       '200': {
-        description: 'Model has one Directive',
+        description: 'Array of Model has many Directive',
         content: {
           'application/json': {
-            schema: getModelSchemaRef(Directive),
+            schema: {type: 'array', items: getModelSchemaRef(Directive)},
           },
         },
       },
     },
   })
-  async get(
+  async find(
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Directive>,
-  ): Promise<Directive> {
-    return this.modelRepository.directive(id).get(filter);
+  ): Promise<Directive[]> {
+    return this.modelRepository.directives(id).find(filter);
   }
 
-  @post('/models/{id}/directive', {
+  @post('/models/{id}/directives', {
     responses: {
       '200': {
         description: 'Model model instance',
@@ -67,10 +67,10 @@ export class ModelDirectiveController {
       },
     }) directive: Omit<Directive, 'id'>,
   ): Promise<Directive> {
-    return this.modelRepository.directive(id).create(directive);
+    return this.modelRepository.directives(id).create(directive);
   }
 
-  @patch('/models/{id}/directive', {
+  @patch('/models/{id}/directives', {
     responses: {
       '200': {
         description: 'Model.Directive PATCH success count',
@@ -90,10 +90,10 @@ export class ModelDirectiveController {
     directive: Partial<Directive>,
     @param.query.object('where', getWhereSchemaFor(Directive)) where?: Where<Directive>,
   ): Promise<Count> {
-    return this.modelRepository.directive(id).patch(directive, where);
+    return this.modelRepository.directives(id).patch(directive, where);
   }
 
-  @del('/models/{id}/directive', {
+  @del('/models/{id}/directives', {
     responses: {
       '200': {
         description: 'Model.Directive DELETE success count',
@@ -105,6 +105,6 @@ export class ModelDirectiveController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Directive)) where?: Where<Directive>,
   ): Promise<Count> {
-    return this.modelRepository.directive(id).delete(where);
+    return this.modelRepository.directives(id).delete(where);
   }
 }

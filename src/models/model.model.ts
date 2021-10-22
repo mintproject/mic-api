@@ -2,6 +2,7 @@ import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {Directive} from './directive.model';
 import {Input} from './input.model';
 import {Parameter} from './parameter.model';
+import {Container} from './container.model';
 
 enum ComponentType {
   CWL = 'cwl',
@@ -67,6 +68,14 @@ export class Model extends Entity {
   @hasMany(() => Input)
   inputs: Input[];
 
+  @hasMany(() => Container)
+  containers: Container[];
+
+  @hasOne(() => Container)
+  container: Container;
+
+  @hasMany(() => Directive)
+  directives: Directive[];
   [prop: string]: any;
 
   constructor(data?: Partial<Model>) {

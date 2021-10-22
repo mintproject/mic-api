@@ -20,6 +20,18 @@ export class Directive extends Entity {
   })
   modelId?: string;
 
+  @property({
+    type: 'date',
+    defaultFn: "now",
+  })
+  created_at: Date;
+
+  @property({
+    type: 'boolean',
+    default: false
+  })
+  added: boolean;
+
   constructor(data?: Partial<Directive>) {
     super(data);
   }

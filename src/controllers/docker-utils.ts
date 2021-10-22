@@ -35,6 +35,8 @@ export const createContainer = async (image: string): Promise<DockerContainer> =
       return container
     })
   await new Promise(r => setTimeout(r, 2000));
+
+  //todo: catch
   const port = (await container.inspect()).NetworkSettings.Ports['8080/tcp'][0].HostPort
   const response: DockerContainer = {
     id: container.id,

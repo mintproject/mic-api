@@ -1,11 +1,12 @@
 import {Getter, inject} from '@loopback/core';
 import {DefaultCrudRepository, HasManyRepositoryFactory, HasOneRepositoryFactory, repository} from '@loopback/repository';
 import {DbDataSource} from '../datasources';
-import {Directive, Input, Model, ModelRelations, Parameter, Container} from '../models';
+import {Directive, Input, Model, ModelRelations, Parameter, Container, Cwlspec} from '../models';
 import {DirectiveRepository} from './directive.repository';
 import {InputRepository} from './input.repository';
 import {ParameterRepository} from './parameter.repository';
 import {ContainerRepository} from './container.repository';
+import {CwlspecRepository} from './cwlspec.repository';
 
 export class ModelRepository extends DefaultCrudRepository<
   Model,
@@ -25,10 +26,14 @@ export class ModelRepository extends DefaultCrudRepository<
 
   public readonly directives: HasManyRepositoryFactory<Directive, typeof Model.prototype.id>;
 
+  public readonly cwlspec: HasOneRepositoryFactory<Cwlspec, typeof Model.prototype.id>;
+
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('ParameterRepository') protected parameterRepositoryGetter: Getter<ParameterRepository>, @repository.getter('DirectiveRepository') protected directiveRepositoryGetter: Getter<DirectiveRepository>, @repository.getter('InputRepository') protected inputRepositoryGetter: Getter<InputRepository>, @repository.getter('ContainerRepository') protected containerRepositoryGetter: Getter<ContainerRepository>,
+    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('ParameterRepository') protected parameterRepositoryGetter: Getter<ParameterRepository>, @repository.getter('DirectiveRepository') protected directiveRepositoryGetter: Getter<DirectiveRepository>, @repository.getter('InputRepository') protected inputRepositoryGetter: Getter<InputRepository>, @repository.getter('ContainerRepository') protected containerRepositoryGetter: Getter<ContainerRepository>, @repository.getter('CwlspecRepository') protected cwlspecRepositoryGetter: Getter<CwlspecRepository>,
   ) {
     super(Model, dataSource);
+    this.cwlspec = this.createHasOneRepositoryFactoryFor('cwlspec', cwlspecRepositoryGetter);
+    this.registerInclusionResolver('cwlspec', this.cwlspec.inclusionResolver);
     this.directives = this.createHasManyRepositoryFactoryFor('directives', directiveRepositoryGetter,);
     this.registerInclusionResolver('directives', this.directives.inclusionResolver);
     this.container = this.createHasOneRepositoryFactoryFor('container', containerRepositoryGetter);

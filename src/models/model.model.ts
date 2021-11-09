@@ -3,6 +3,7 @@ import {Directive} from './directive.model';
 import {Input} from './input.model';
 import {Parameter} from './parameter.model';
 import {Container} from './container.model';
+import {Cwlspec} from './cwlspec.model';
 
 enum ComponentType {
   CWL = 'cwl',
@@ -76,6 +77,9 @@ export class Model extends Entity {
 
   @hasMany(() => Directive)
   directives: Directive[];
+
+  @hasOne(() => Cwlspec)
+  cwlspec: Cwlspec;
   [prop: string]: any;
 
   constructor(data?: Partial<Model>) {

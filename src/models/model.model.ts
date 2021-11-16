@@ -48,6 +48,17 @@ export class Model extends Entity {
   @property({
     type: 'string',
   })
+  model_id?: string
+
+  @property({
+    type: 'string',
+  })
+  version_id?: string;
+
+
+  @property({
+    type: 'string',
+  })
   docker_image: string
 
   @property({

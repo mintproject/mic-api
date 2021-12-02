@@ -3,5 +3,6 @@ export * from './cwlspec.model';
 export * from './directive.model';
 export * from './input.model';
 export * from './model.model';
+export * from './output.model';
 export * from './parameter.model';
 

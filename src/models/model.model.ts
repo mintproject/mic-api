@@ -3,6 +3,7 @@ import {Container} from './container.model';
 import {Cwlspec} from './cwlspec.model';
 import {Directive} from './directive.model';
 import {Input} from './input.model';
+import {Output} from './output.model';
 import {Parameter} from './parameter.model';
 
 enum ComponentType {
@@ -61,11 +62,6 @@ export class Model extends Entity {
   })
   docker_image: string
 
-  @property({
-    type: 'string',
-  })
-  path?: string;
-
   @hasMany(() => Parameter)
   parameters: Parameter[];
 
@@ -86,6 +82,9 @@ export class Model extends Entity {
 
   @hasOne(() => Cwlspec)
   cwlspec: Cwlspec;
+
+  @hasMany(() => Output)
+  outputs: Output[];
   [prop: string]: any;
 
   constructor(data?: Partial<Model>) {

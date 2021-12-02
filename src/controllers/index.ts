@@ -9,3 +9,5 @@ export * from './model-container.controller';
 export * from './container.controller';
 export * from './directive.controller';
 export * from './model-cwlspec.controller';
+export * from './output.controller';
+export * from './model-output.controller';

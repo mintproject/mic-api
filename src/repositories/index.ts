@@ -5,3 +5,4 @@ export * from './parameter.repository';
 
 export * from './container.repository';
 export * from './cwlspec.repository';
+export * from './output.repository';

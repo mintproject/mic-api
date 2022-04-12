@@ -38,6 +38,10 @@ export class Input extends Entity {
   })
   prefix: string;
 
+  @property({
+    type: 'string',
+  })
+  componentId?: string;
   // Define well-known properties here
 
   // Indexer property to allow additional data

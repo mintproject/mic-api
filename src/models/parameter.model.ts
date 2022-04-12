@@ -90,3 +90,10 @@ export class Parameter extends Entity {
     super(data);
   }
 }
+
+
+export interface ParameterRelations {
+  // describe navigational properties here
+}
+
+export type ParameterWithRelations = Parameter & ParameterRelations;

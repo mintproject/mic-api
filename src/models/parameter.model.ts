@@ -18,7 +18,7 @@ export class Parameter extends Entity {
   @property({
     type: 'string',
   })
-  display_name?: string;
+  displayName?: string;
 
   @property({
     type: 'string',
@@ -41,20 +41,14 @@ export class Parameter extends Entity {
     type: 'string',
     nullable: true
   })
-  unit_description?: string;
+  unitDescription?: string;
 
   @property({
     type: 'string',
     description: "Describes whether the data values will be categorical, ordered, or numerical",
     nullable: true
   })
-  data_type?: string;
-
-  @property({
-    type: 'any',
-    nullable: true
-  })
-  default?: any;
+  dataType?: string;
 
   @property({
     type: 'array',

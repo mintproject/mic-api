@@ -27,6 +27,11 @@ export class Component extends Entity {
 
   @property({
     type: 'string',
+    required: true,
+    jsonSchema: {
+      enum: Object.values(ComponentType),
+      default: ComponentType.CWL
+    },
   })
   type?: string;
 

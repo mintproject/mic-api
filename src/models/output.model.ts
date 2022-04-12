@@ -35,6 +35,10 @@ export class Output extends Entity {
   })
   match?: string;
 
+  @property({
+    type: 'string',
+  })
+  componentId?: string;
 
   constructor(data?: Partial<Output>) {
     super(data);

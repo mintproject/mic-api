@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Parameter} from './parameter.model';
 
 enum ComponentType {
   CWL = "cwl",
@@ -40,6 +41,8 @@ export class Component extends Entity {
   })
   image?: string;
 
+  @hasMany(() => Parameter)
+  parameters: Parameter[];
 
   constructor(data?: Partial<Component>) {
     super(data);

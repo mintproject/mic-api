@@ -5,7 +5,7 @@ export class Directive extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    defaultFn: 'uuid',
   })
   id?: string;
 

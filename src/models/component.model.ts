@@ -1,8 +1,8 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Parameter} from './parameter.model';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {Directive} from './directive.model';
 import {Input} from './input.model';
 import {Output} from './output.model';
+import {Parameter} from './parameter.model';
 
 enum ComponentType {
   CWL = "cwl",
@@ -14,7 +14,7 @@ export class Component extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    defaultFn: 'uuid',
   })
   id?: string;
 

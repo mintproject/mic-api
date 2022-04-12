@@ -27,6 +27,10 @@ export class Directive extends Entity {
   })
   added: boolean;
 
+  @property({
+    type: 'string',
+  })
+  componentId?: string;
 
   constructor(data?: Partial<Directive>) {
     super(data);

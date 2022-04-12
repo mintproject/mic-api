@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Parameter} from './parameter.model';
+import {Directive} from './directive.model';
 
 enum ComponentType {
   CWL = "cwl",
@@ -43,6 +44,9 @@ export class Component extends Entity {
 
   @hasMany(() => Parameter)
   parameters: Parameter[];
+
+  @hasMany(() => Directive)
+  directives: Directive[];
 
   constructor(data?: Partial<Component>) {
     super(data);

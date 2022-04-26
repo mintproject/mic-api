@@ -1,11 +1,11 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class GitRepo extends Entity {
+export class Notebook extends Entity {
   @property({
     type: 'string',
     id: true,
-    defaultFn: 'uuid',
+    generated: true,
   })
   id?: string;
 
@@ -13,36 +13,37 @@ export class GitRepo extends Entity {
     type: 'string',
     required: true,
   })
-  url: string;
+  name: string;
 
   @property({
     type: 'string',
   })
-  ref?: string;
+  localPath?: string;
 
   @property({
     type: 'string',
   })
-  dockerImage?: string;
+  remotePath?: string;
 
   @property({
-    type: 'array',
-    itemType: 'string',
+    type: 'string',
+    required: true,
   })
-  notebooks?: string[];
+  inferredBy: string;
 
   @property({
     type: 'string',
   })
-  componentId?: string;
+  spec?: string;
 
-  constructor(data?: Partial<GitRepo>) {
+
+  constructor(data?: Partial<Notebook>) {
     super(data);
   }
 }
 
-export interface GitRepoRelations {
+export interface NotebookRelations {
   // describe navigational properties here
 }
 
-export type GitRepoWithRelations = GitRepo & GitRepoRelations;
+export type NotebookWithRelations = Notebook & NotebookRelations;

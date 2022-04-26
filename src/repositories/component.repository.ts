@@ -1,11 +1,12 @@
 import {inject, Getter} from '@loopback/core';
-import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
+import {DefaultCrudRepository, repository, HasManyRepositoryFactory, HasOneRepositoryFactory} from '@loopback/repository';
 import {DbDataSource} from '../datasources';
-import {Component, ComponentRelations, Parameter, Directive, Input, Output} from '../models';
+import {Component, ComponentRelations, Parameter, Directive, Input, Output, GitRepo} from '../models';
 import {ParameterRepository} from './parameter.repository';
 import {DirectiveRepository} from './directive.repository';
 import {InputRepository} from './input.repository';
 import {OutputRepository} from './output.repository';
+import {GitRepoRepository} from './git-repo.repository';
 
 export class ComponentRepository extends DefaultCrudRepository<
   Component,
@@ -21,10 +22,14 @@ export class ComponentRepository extends DefaultCrudRepository<
 
   public readonly outputs: HasManyRepositoryFactory<Output, typeof Component.prototype.id>;
 
+  public readonly gitRepo: HasOneRepositoryFactory<GitRepo, typeof Component.prototype.id>;
+
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('ParameterRepository') protected parameterRepositoryGetter: Getter<ParameterRepository>, @repository.getter('DirectiveRepository') protected directiveRepositoryGetter: Getter<DirectiveRepository>, @repository.getter('InputRepository') protected inputRepositoryGetter: Getter<InputRepository>, @repository.getter('OutputRepository') protected outputRepositoryGetter: Getter<OutputRepository>,
+    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('ParameterRepository') protected parameterRepositoryGetter: Getter<ParameterRepository>, @repository.getter('DirectiveRepository') protected directiveRepositoryGetter: Getter<DirectiveRepository>, @repository.getter('InputRepository') protected inputRepositoryGetter: Getter<InputRepository>, @repository.getter('OutputRepository') protected outputRepositoryGetter: Getter<OutputRepository>, @repository.getter('GitRepoRepository') protected gitRepoRepositoryGetter: Getter<GitRepoRepository>,
   ) {
     super(Component, dataSource);
+    this.gitRepo = this.createHasOneRepositoryFactoryFor('gitRepo', gitRepoRepositoryGetter);
+    this.registerInclusionResolver('gitRepo', this.gitRepo.inclusionResolver);
     this.outputs = this.createHasManyRepositoryFactoryFor('outputs', outputRepositoryGetter,);
     this.registerInclusionResolver('outputs', this.outputs.inclusionResolver);
     this.inputs = this.createHasManyRepositoryFactoryFor('inputs', inputRepositoryGetter,);

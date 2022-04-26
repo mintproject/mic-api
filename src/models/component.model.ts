@@ -1,8 +1,9 @@
-import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property, hasOne} from '@loopback/repository';
 import {Directive} from './directive.model';
 import {Input} from './input.model';
 import {Output} from './output.model';
 import {Parameter} from './parameter.model';
+import {GitRepo} from './git-repo.model';
 
 enum ComponentType {
   CWL = "cwl",
@@ -54,6 +55,9 @@ export class Component extends Entity {
 
   @hasMany(() => Output)
   outputs: Output[];
+
+  @hasOne(() => GitRepo)
+  gitRepo: GitRepo;
 
   constructor(data?: Partial<Component>) {
     super(data);

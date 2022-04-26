@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Notebook} from './notebook.model';
 
 @model()
 export class GitRepo extends Entity {
@@ -30,6 +31,9 @@ export class GitRepo extends Entity {
     type: 'string',
   })
   componentId?: string;
+
+  @hasMany(() => Notebook)
+  notebooks: Notebook[];
 
   constructor(data?: Partial<GitRepo>) {
     super(data);

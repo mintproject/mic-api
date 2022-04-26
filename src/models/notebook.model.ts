@@ -36,6 +36,10 @@ export class Notebook extends Entity {
   })
   spec?: string;
 
+  @property({
+    type: 'string',
+  })
+  gitRepoId?: string;
 
   constructor(data?: Partial<Notebook>) {
     super(data);

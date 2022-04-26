@@ -25,11 +25,6 @@ export class GitRepo extends Entity {
   })
   dockerImage?: string;
 
-  @property({
-    type: 'array',
-    itemType: 'string',
-  })
-  notebooks?: string[];
 
   @property({
     type: 'string',

@@ -4,3 +4,4 @@ export * from './input.repository';
 export * from './output.repository';
 export * from './parameter.repository';
 export * from './git-repo.repository';
+export * from './notebook.repository';

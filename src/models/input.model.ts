@@ -17,9 +17,8 @@ export class Input extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  display_name: string;
+  displayName: string;
 
   @property({
     type: 'string',

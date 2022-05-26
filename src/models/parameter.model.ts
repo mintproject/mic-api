@@ -74,6 +74,10 @@ export class Parameter extends Entity {
   })
   modelId?: string;
 
+  @property({
+    type: 'string',
+  })
+  default: string;
 
   @property({
     type: 'string',

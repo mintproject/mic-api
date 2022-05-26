@@ -1,12 +1,12 @@
-import {Entity, hasMany, model, property, hasOne} from '@loopback/repository';
+import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {Directive} from './directive.model';
+import {GitRepo} from './git-repo.model';
 import {Input} from './input.model';
 import {Output} from './output.model';
 import {Parameter} from './parameter.model';
-import {GitRepo} from './git-repo.model';
 
 enum ComponentType {
-  CWL = "cwl",
+  CWL = "ipython2cwl",
   DOCKER = "docker"
 }
 
@@ -42,10 +42,18 @@ export class Component extends Entity {
   @property({
     type: 'string',
   })
-  image?: string;
+  dockerImage?: string;
+
+
+  @property({
+    'type': 'string',
+  })
+  hasComponentLocation?: string;
 
   @hasMany(() => Parameter)
   parameters: Parameter[];
+
+
 
   @hasMany(() => Directive)
   directives: Directive[];

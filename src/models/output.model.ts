@@ -5,7 +5,7 @@ export class Output extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    defaultFn: 'uuid',
   })
   id?: string;
 
@@ -18,7 +18,7 @@ export class Output extends Entity {
   @property({
     type: 'string',
   })
-  display_name?: string;
+  displayName?: string;
 
   @property({
     type: 'string',

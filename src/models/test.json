@@ -1,0 +1,14 @@
+
+{
+  "include": [
+    {
+      "relation": "gitRepo",
+      "scope":
+      {
+        "include": [{"relation": "nestedRelationName"}]
+      }
+    }
+  ]
+}
+
+

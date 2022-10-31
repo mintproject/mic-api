@@ -7,3 +7,4 @@ export * from './input.controller';
 export * from './component.controller';
 export * from './component-git-repo.controller';
 export * from './git-repo-notebook.controller';
+export * from './parameter.controller';

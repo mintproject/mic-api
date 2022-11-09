@@ -1,15 +1,21 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
+const host = process.env.KUBERNETES_SERVICE_HOST ? process.env.DB_HOST : 'localhost';
+const port = process.env.KUBERNETES_SERVICE_HOST ? process.env.DB_PORT : 5432;
+const user = process.env.KUBERNETES_SERVICE_HOST ? process.env.DB_USER : 'postgres';
+const password = process.env.KUBERNETES_SERVICE_HOST ? process.env.DB_PASSWORD : 'postgres';
+const database = process.env.KUBERNETES_SERVICE_HOST ? process.env.DB_DATABASE : 'postgres';
+
 const config = {
   name: 'db',
   connector: 'postgresql',
   url: '',
-  host: 'postgres',
-  port: 5432,
-  user: 'test',
-  password: 'test',
-  database: 'mat'
+  host: host,
+  port: port,
+  user: user,
+  password: password,
+  database: database
 };
 
 // Observe application's life cycle to disconnect the datasource when

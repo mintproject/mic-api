@@ -108,12 +108,24 @@ jobs:
           token: ${{ secrets.MINT_INSTANCES }}
           ref: main
 
-
       - name: Update MINT ISI master
         uses: fjogeleit/yaml-update-action@main
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
           valueFile: isi/values.yaml
+          propertyPath: "MINT.components.mic_api.image.tag"
+          value: ${{ env.DOCKER_TAG }}
+          message: "Update mic api"
+          repository: mintproject/mint-instances
+          workDir: infrastructure
+          branch: master
+          token: ${{ secrets.MINT_INSTANCES }}
+
+      - name: Update MINT tacc master
+        uses: fjogeleit/yaml-update-action@main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        with:
+          valueFile: tacc/values.yaml
           propertyPath: "MINT.components.mic_api.image.tag"
           value: ${{ env.DOCKER_TAG }}
           message: "Update mic api"
@@ -147,7 +159,6 @@ jobs:
           workDir: infrastructure
           branch: master
           token: ${{ secrets.MINT_INSTANCES }}
-
 
       - name: Update helm charts
         uses: fjogeleit/yaml-update-action@main
